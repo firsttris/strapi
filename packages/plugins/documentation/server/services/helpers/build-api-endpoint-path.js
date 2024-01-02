@@ -184,7 +184,11 @@ const loopCustomRoutes = (api) => {
       const hasPathParams = route.path.includes('/:');
       const pathWithPrefix = getPathWithPrefix(routeInfo.prefix, route);
       const routePath = hasPathParams ? parsePathWithVariables(pathWithPrefix) : pathWithPrefix;
-      const responses = getApiErrorResponses();
+      // const responses = getApiErrorResponses();
+      const { responses } = getApiResponses({
+        uniqueName: api.name,
+        route
+      });
       const swaggerConfig = {
         [routePath]: {
           [methodVerb]: {
